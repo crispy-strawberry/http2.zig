@@ -4,13 +4,22 @@ const StreamServer = std.net.StreamServer;
 
 const Server = @import("server.zig");
 
+const allocator = std.testing.allocator;
+
 export fn add(a: i32, b: i32) i32 {
     return a + b;
 }
 
 test "test server init" {
-    const server = Server.init();
-    defer server.deinit();
+    var server = Server.init(allocator);
+    try server.listen();
+    while (true) {
+        try server.accept();
+    }
+
+    server.stream.close();
+    server.deinit();
+    // defer server.deinit();
 }
 
 // test "basic add functionality" {

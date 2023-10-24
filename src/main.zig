@@ -1,14 +1,9 @@
 const std = @import("std");
 const testing = std.testing;
-const StreamServer = std.net.StreamServer;
+
+const allocator = testing.allocator;
 
 const Server = @import("server.zig");
-
-const allocator = std.testing.allocator;
-
-export fn add(a: i32, b: i32) i32 {
-    return a + b;
-}
 
 comptime {
     _ = @import("methods.zig");

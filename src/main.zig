@@ -10,12 +10,16 @@ export fn add(a: i32, b: i32) i32 {
     return a + b;
 }
 
+comptime {
+    _ = @import("methods.zig");
+}
+
 test "test server init" {
     var server = Server.init(allocator);
     try server.listen();
-    while (true) {
-        try server.accept();
-    }
+    //while (true) {
+    //    try server.accept();
+    //}
 
     server.stream.close();
     server.deinit();

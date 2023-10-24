@@ -32,7 +32,7 @@ pub fn accept(self: *Server) !void {
     _ = conn.stream.read(buf[0..]) catch @panic("Errored!");
 
     // std.http.Server;
-    std.io.BufferedWriter
+    //std.io.BufferedWriter
     var resp = try std.ArrayList(u8).initCapacity(self.allocator, 1024);
     defer resp.deinit();
     var resp_writer = resp.writer();

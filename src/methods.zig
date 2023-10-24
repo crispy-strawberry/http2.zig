@@ -29,7 +29,7 @@ pub const Method = enum(u192) {
     pub fn write(self: *Method, writer: *std.io.Writer) !void {
         const bytes = std.mem.asBytes(&@intFromEnum(self));
         // I am unsure if this works on big-endian systems.
-        // But, well I have any big endian hardware to test
+        // But, well I don't have any big endian hardware to test
         // it against ¯\_(ツ)_/¯
         const string = std.mem.sliceTo(bytes, 0);
         try writer.writeAll(string);
